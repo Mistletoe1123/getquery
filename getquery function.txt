@@ -1,0 +1,21 @@
+//获取浏览器的query参数
+window.onload = function () {//放到onload里面不会暴露太多变量
+    function getUrlParams() {
+        let href = location.href;
+        let regExp = /.+\?(.+)/
+        let param = regExp.exec(href)[1]
+        // console.log(param);
+        // console.log(decodeURI(param));解码URI的参数编码
+        let paramArr = param.split("&");
+        //console.log(paramArr);
+        let query = {}
+        paramArr.forEach(item => {
+            itemArr = item.split("=");
+            // console.log(itemArr);
+            query[itemArr[0]] = decodeURI(itemArr[1])
+        })
+        return query
+    }
+    let query = getUrlParams()
+    //获取浏览器query参数 {productid: "0", title: "国内折扣"}
+    console.log(query);
